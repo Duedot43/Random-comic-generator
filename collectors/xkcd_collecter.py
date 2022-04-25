@@ -6,7 +6,7 @@ def getval(file):
     if res.status_code == 200:
         p2 = str(res.text)
         return p2
-os.makedirs("xkcd_comics")
+os.makedirs("../xkcd_comics")
 res = requests.get("http://xkcd.com/info.0.json")
 if res.status_code == 200:
     p2 = str(res.text)
@@ -18,7 +18,7 @@ for x in range(1,jsont['num']):
         get = getval(str(x))
         jsont = json.loads(get)
         img_list.append(jsont['num'])
-        os.system(f"curl '{jsont['img']}' --output ./xkcd_comics/{jsont['num']}.png")
+        os.system(f"curl '{jsont['img']}' --output ../xkcd_comics/{jsont['num']}.png")
 
-with open('./xkcd_comics/latest', 'a') as f:
+with open('../xkcd_comics/latest', 'a') as f:
     f.write(str(img_list))
