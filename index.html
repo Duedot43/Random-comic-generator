@@ -1,5 +1,28 @@
-<img id="comic" src="/gar_comics/1.gif" alt="Comic not found">
+<img id="comic" src="/gar_comics/1.gif" alt="Comic not found" width="21" height=auto>
 <script>
+    // Arrow function to get all the GET parameters
+getParameters = () => {
+
+// Address of the current window
+address = window.location.search
+
+// Returns a URLSearchParams object instance
+parameterList = new URLSearchParams(address)
+
+// Created a map which holds key value pairs
+let map = new Map()
+
+// Storing every key value pair in the map
+parameterList.forEach((value, key) => {
+    map.set(key, value)
+})
+
+// Returning the map of GET parameters
+return map
+}
+
+// Gets all the getParameters
+var gets = getParameters()
     var what_comics = Math.floor(Math.random() * 2);
     if (what_comics == 0){
         let comic = "https://duedot43.github.io/RandomComics/gar_comics/";
@@ -15,4 +38,7 @@
 
         document.querySelector('#comic').src = comic;
     }
+    console.log(gets)
+    document.querySelector('#comic').width = gets.get("width");
+    //document.querySelector('#comic').height = gets.get("height");
 </script>
