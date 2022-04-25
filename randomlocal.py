@@ -1,4 +1,4 @@
-import requests, json, os
+import requests, json, os, random
 def update_xkcd(folder_location):
     latest = open(str(folder_location) + "/latest", "r+")
     #lines = latest.readlines()
@@ -25,12 +25,23 @@ def update_xkcd(folder_location):
         latest.close()
 
 
-def random_xkcd(folder_location):
-    pass
+def random_xkcd(folder_location, html):
+    latest = open(str(folder_location) + "/latest", "r+")
+    latest_string = latest.read()
+    latest_lists = latest_string.strip('][').split(', ')
+    latest_list = []
+    for x in latest_lists:
+        latest_list.append(int(x))
+    num = random.randint(1,int(latest_list[int(int(len(latest_list))-1)]))
+    #generate html response or not
+    if html == 0:
+        output = folder_location + "/" + str(num) + ".png"
+    if html == 1:
+        output = f"<img src='{folder_location}/{num}.png'>"
+    return output
 def update_gar(folder_location):
     pass
 def random_gar(folder_location):
     pass
 def random_all(xkcd_folder, gar_folder):
     pass
-update_xkcd("./xkcd_comics")
