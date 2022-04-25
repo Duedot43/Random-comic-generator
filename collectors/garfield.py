@@ -25,7 +25,7 @@ def daterange(start, end):
 
 
 # to create a directory because it will be a mess if not organized
-dir = "../gar_comics/"
+dir = "./gar_comics/"
 if not os.path.exists(dir):
     os.makedirs(dir)
 
@@ -42,14 +42,14 @@ for some_date in daterange(starting_date, todays_date):
     #http://images.ucomics.com/comics/ga/1978/ga780619.gif
     # image_url = f"https://d1ejxu6vysztl5.cloudfront.net/comics/garfield/{some_date.year}/{some_date}.gif"
     # but will print "1" instead of "01"
-    image_url = f"http://images.ucomics.com/comics/ga/{some_date.year}/ga{reqd_date}.gif"
+    image_url = f"https://picayune.uclick.com/comics/ga/{some_date.year}/ga{reqd_date}.gif"
 
     file = f"{dir}{str(reqd_date)}.gif"
     if not os.path.exists(file):
         #print(image_url)
-        os.system(f"curl {image_url} --output ../gar_comics/{count}.gif")
+        os.system(f"curl {image_url} --output ./gar_comics/{count}.gif")
         list_images.append(count)
         count = count+1
-os.system(f"echo '{list_images}' >> ../gar_comics/latest")
+os.system(f"echo '{list_images}' >> ./gar_comics/latest")
 print("All comics have been downloaded")
 print("thanks for using")
